@@ -155,5 +155,5 @@ Let me know if you'd like help with:
 - Deploying this to Render, Azure, or Hugging Face Spaces
 - Automating `.env` and `.pkl` creation with shell scripts
 
-You're fully production-ready — amazing work! 🚀
+It's fully production-ready — amazing work! 🚀
 
