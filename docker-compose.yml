@@ -31,7 +31,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./requirements.txt:/requirements.txt
     ports:
-      - "8080:8080"
+      - "8081:8080"
     command: webserver
 
   airflow-scheduler:
@@ -51,6 +51,18 @@ services:
       - "8000:8000"
     volumes:
       - ./models:/app/models
+
+  mlflow:
+    image: python:3.9-slim
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow:/mlflow
+      - ./models:/models
+    working_dir: /mlflow
+    command: >
+      bash -c "pip install mlflow==2.8.1 && 
+               mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts"
 
 volumes:
   postgres_db:

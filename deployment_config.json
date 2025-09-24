@@ -1,0 +1,20 @@
+{
+  "deployment": {
+    "timestamp": "2025-09-24T17:25:23.104908",
+    "mlflow_uri": "http://localhost:5000",
+    "api_endpoint": "http://localhost:8000",
+    "model_name": "StockPricePredictor",
+    "stage": "Production"
+  },
+  "monitoring": {
+    "health_check_interval": 300,
+    "performance_threshold": 0.05,
+    "accuracy_threshold": 0.95
+  },
+  "scaling": {
+    "min_replicas": 1,
+    "max_replicas": 5,
+    "cpu_threshold": 70,
+    "memory_threshold": 80
+  }
+}

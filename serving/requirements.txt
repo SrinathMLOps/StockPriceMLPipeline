@@ -3,3 +3,4 @@ uvicorn
 scikit-learn
 joblib
 numpy
+mlflow==2.8.1
