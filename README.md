@@ -672,14 +672,46 @@ curl http://localhost:8001/health
 curl -X POST "http://localhost:8001/predict?ma_3=100&pct_change_1d=0.01&volume=5000"
 ```
 
-### **📊 MLflow Experiments Dashboard**
+### **📊 MLflow Experiments & Model Performance**
+
+#### **Performance Dashboard**
+![Model Performance Dashboard](images/model-performance.png)
+*Comprehensive model performance comparison showing R² scores, MSE analysis, and performance summary*
+
+#### **Experiment Progress Timeline**
+![Experiment Timeline](images/experiment-timeline.png)
+*Progress of experiments over time showing model improvement across different approaches*
+
+#### **Best Model Details**
+![Best Model Performance](images/best-model-performance.png)
+*Detailed performance metrics for the best performing Random Forest model (99.82% accuracy)*
+
+#### **MLflow Dashboard Screenshots**
+![MLflow Experiments](images/mlflow-experiments.png)
+*MLflow experiments page showing all runs with comprehensive metrics tracking*
+
+#### **Key Results Summary**
+- **Best Model**: Random Forest Regressor
+- **Accuracy**: 99.82% (R² Score)
+- **Total Experiments**: 2 (stock_price_prediction, stock_price_hyperparameter_tuning)
+- **Total Model Runs**: 5
+- **Production Model**: Version 5 (Active)
+
+#### **Model Performance Comparison**
+
+| Model Type | R² Score | MSE | Status | Experiment |
+|------------|----------|-----|--------|------------|
+| **Random Forest** | **0.9982** | **0.1511** | **Production** | stock_price_prediction |
+| Ridge Regression | 0.9958 | 0.9991 | Staging | hyperparameter_tuning |
+| Random Forest (v2) | 0.9941 | 1.4098 | None | hyperparameter_tuning |
+| Linear Regression | 0.9928 | 0.0333 | None | stock_price_prediction |
 
 Access the MLflow UI at http://localhost:5000 to view:
 
-- **Experiments**: stock_price_prediction experiment with training runs
-- **Models**: StockPricePredictor model in registry
-- **Metrics**: R², MSE, MAE tracking across runs
-- **Parameters**: Model hyperparameters and training config
+- **Experiments**: Multiple experiments with hyperparameter tuning
+- **Models**: Versioned models in registry with production deployment
+- **Metrics**: R², MSE, MAE tracking across all runs
+- **Parameters**: Model hyperparameters and training configurations
 - **Artifacts**: Saved model files and training outputs
 
 ### **🔧 Development Workflow**
