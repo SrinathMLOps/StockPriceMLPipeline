@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  mlflow:
+    image: python:3.9-slim
+    ports:
+      - "5000:5000"
+    working_dir: /app
+    command: >
+      bash -c "pip install mlflow==2.8.1 && 
+               mkdir -p /app/mlruns && 
+               mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri file:///app/mlruns --default-artifact-root /app/mlruns"
+
+  fastapi:
+    build: ./serving
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
